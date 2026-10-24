@@ -5,3 +5,4 @@ node_modules/
 .pi/
 .mcp.json
 config.json
+remotesend-upload.json

@@ -1,14 +1,26 @@
 {
   "name": "remotesend-pi-upload",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": false,
   "description": "Pi extension for uploading build artifacts through a running RemoteSend desktop app",
-  "keywords": ["pi-package", "remotesend", "webdav", "upload"],
+  "keywords": [
+    "pi-package",
+    "remotesend",
+    "webdav",
+    "upload"
+  ],
   "license": "Apache-2.0",
-  "engines": { "node": ">=20" },
-  "pi": { "extensions": ["./extensions/remotesend-upload.ts"] },
+  "engines": {
+    "node": ">=20"
+  },
+  "pi": {
+    "extensions": [
+      "./extensions/remotesend-upload.ts"
+    ]
+  },
   "peerDependencies": {
     "@earendil-works/pi-coding-agent": "*",
+    "@earendil-works/pi-tui": "*",
     "typebox": "*"
   },
   "devDependencies": {

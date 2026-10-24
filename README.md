@@ -14,15 +14,11 @@ A small [Pi](https://pi.dev) tool for uploading compiled files **through your ru
    ```
 
    Alternatively, download this repository from GitHub and run `pi install /path/to/remotesend-pi-upload`. Use `pi update git:github.com/Wu-HZ/remotesend-pi-upload` to update. In a running Pi session, use `/reload` after installation.
-3. Set `REMOTESEND_API_TOKEN` **before starting Pi**. The token is local to each machine; **do not commit it, pass it in tool arguments, or put it in a shared settings file**.
+3. In Pi, run **`/remotesend-config` once**, paste the Local upload API token into the **masked input**, then press Enter. The extension saves it in your *user-level* Pi configuration (`~/.pi/agent/remotesend-upload.json`, or the directory selected by `PI_CODING_AGENT_DIR`) and reads it automatically on every launch and in every project. **No environment variable or repeated entry is needed.** An already-running Pi can use it immediately.
 
-   ```powershell
-   $secret = Read-Host 'Paste RemoteSend API token' -AsSecureString
-   $env:REMOTESEND_API_TOKEN = (New-Object System.Net.NetworkCredential('', $secret)).Password
-   pi
-   ```
+   `/remotesend-config status` shows whether a token is available **without displaying it**; `/remotesend-config clear` removes the saved token. Run `/remotesend-config` again after rotating your token in RemoteSend. For CI, `REMOTESEND_API_TOKEN` can still be set as an optional override; its presence takes precedence over the saved value.
 
-   In Bash: `read -rs REMOTESEND_API_TOKEN; export REMOTESEND_API_TOKEN; pi`. If Pi is already running, exit and restart it with the environment variable set. Never give Pi your WebDAV credentials; it only needs the separate RemoteSend API token.
+   This local config file is plaintext but is created with owner-only permissions (0600 on Unix, under your Windows user profile on Windows). Protect your OS account and backups; **do not copy the config into a project, pass the token in tool arguments or chat, or commit it**. Never give Pi WebDAV credentials; it only needs the separate RemoteSend API token.
 
 ## Usage
 
